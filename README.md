@@ -20,6 +20,16 @@
 
 <br>
 
+## WBS
+![유튜브 댓글 분석 서비스 WBS](https://user-images.githubusercontent.com/71515740/190957444-35c93b3d-9ce3-4226-8e45-de797996a1b9.PNG)
+
+<br>
+
+## ERD 설계
+![유튜브 댓글 분석 서비스 ERD모델](https://user-images.githubusercontent.com/71515740/190957456-56cc78dc-ca74-45ef-85f1-85b8adb3967b.png)
+
+<br>
+
 ## 기술 스택
 ### Framework
 <div> 
@@ -101,6 +111,10 @@
 - [https://developers.google.com/youtube/v3](https://developers.google.com/youtube/v3)(Youtube Data Api reference)
 
 - [https://keras.io/](https://keras.io/)(Keras)
+
+### 보고서
+
+- https://drive.google.com/file/d/1tvY8O7U6fk405rqhg5zFDepaHhJm3nKX/view?usp=sharing
 
 
 
