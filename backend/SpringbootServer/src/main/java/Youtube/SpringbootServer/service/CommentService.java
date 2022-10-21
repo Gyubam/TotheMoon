@@ -12,22 +12,32 @@ import java.util.List;
 @Service
 public class CommentService {
 
-    private List<CommentDTO> positiveComments = new ArrayList<>(); // json 구분 인덱스 : 1
-    private List<CommentDTO> negativeComments = new ArrayList<>(); // json 구분 인덱스 : 0
-    private List<CommentDTO> fearComments = new ArrayList<>(); // json 구분 인덱스 : 2
-    private List<CommentDTO> surprisedComments = new ArrayList<>(); // json 구분 인덱스 : 3
-    private List<CommentDTO> angerComments = new ArrayList<>(); // json 구분 인덱스 : 4
-    private List<CommentDTO> sadnessComments = new ArrayList<>(); // json 구분 인덱스 : 5
-    private List<CommentDTO> neutralComments = new ArrayList<>(); // json 구분 인덱스 : 6
-    private List<CommentDTO> happyComments = new ArrayList<>(); // json 구분 인덱스 : 7
-    private List<CommentDTO> disgustComments = new ArrayList<>(); // json 구분 인덱스 : 8
+//    private List<CommentDTO> positiveComments = new ArrayList<>(); // json 구분 인덱스 : 1
+//    private List<CommentDTO> negativeComments = new ArrayList<>(); // json 구분 인덱스 : 0
+//    private List<CommentDTO> fearComments = new ArrayList<>(); // json 구분 인덱스 : 2
+//    private List<CommentDTO> surprisedComments = new ArrayList<>(); // json 구분 인덱스 : 3
+//    private List<CommentDTO> angerComments = new ArrayList<>(); // json 구분 인덱스 : 4
+//    private List<CommentDTO> sadnessComments = new ArrayList<>(); // json 구분 인덱스 : 5
+//    private List<CommentDTO> neutralComments = new ArrayList<>(); // json 구분 인덱스 : 6
+//    private List<CommentDTO> happyComments = new ArrayList<>(); // json 구분 인덱스 : 7
+//    private List<CommentDTO> disgustComments = new ArrayList<>(); // json 구분 인덱스 : 8
 
     //댓글 분류
     public HashMap<String, List> classifyComment(CommentDTO[] comments){
 
         HashMap<String, List> commentMap = new HashMap<>();
 
-        clear();
+        List<CommentDTO> positiveComments = new ArrayList<>(); // json 구분 인덱스 : 1
+        List<CommentDTO> negativeComments = new ArrayList<>(); // json 구분 인덱스 : 0
+        List<CommentDTO> fearComments = new ArrayList<>(); // json 구분 인덱스 : 2
+        List<CommentDTO> surprisedComments = new ArrayList<>(); // json 구분 인덱스 : 3
+        List<CommentDTO> angerComments = new ArrayList<>(); // json 구분 인덱스 : 4
+        List<CommentDTO> sadnessComments = new ArrayList<>(); // json 구분 인덱스 : 5
+        List<CommentDTO> neutralComments = new ArrayList<>(); // json 구분 인덱스 : 6
+        List<CommentDTO> happyComments = new ArrayList<>(); // json 구분 인덱스 : 7
+        List<CommentDTO> disgustComments = new ArrayList<>(); // json 구분 인덱스 : 8
+
+//        clear();
 
         for(int i = 0; i< comments.length; i++){    //인덱스 번호를 통해서 긍정, 부정 , 감정 댓글 분류
             String index = comments[i].getIndex();
@@ -82,9 +92,12 @@ public class CommentService {
     }
 
     //긍정부정 퍼센트 계산
-    public HashMap<String, Double> positiveNegativePercent(){
+    public HashMap<String, Double> positiveNegativePercent(HashMap<String, List> map){
 
         HashMap<String, Double> positiveNegativePercentMap = new HashMap<>();
+
+        List positiveComments = map.get("positiveComments");
+        List negativeComments = map.get("negativeComments");
 
         double positivePercent = ((double)positiveComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
         double negativePercent = ((double)negativeComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
@@ -104,9 +117,18 @@ public class CommentService {
     }
 
     //감정 분석 퍼센트 계산
-    public HashMap<String, Double> sentimentPercent(){
+    public HashMap<String, Double> sentimentPercent(HashMap<String, List> map){
 
         HashMap<String, Double> sentimentPercentMap = new HashMap<>();
+
+        List fearComments = map.get("fearComments");
+        List surprisedComments = map.get("surprisedComments");
+        List angerComments = map.get("angerComments");
+        List sadnessComments = map.get("sadnessComments");
+        List neutralComments = map.get("neutralComments");
+        List happyComments = map.get("happyComments");
+        List disgustComments = map.get("disgustComments");
+
 
         double emTotalSize = fearComments.size()+ surprisedComments.size()+ angerComments.size()+ sadnessComments.size()+ neutralComments.size()+ happyComments.size()+ disgustComments.size();
         double fearPercent = (((double)fearComments.size()/emTotalSize)*100);
@@ -145,15 +167,15 @@ public class CommentService {
         return sentimentPercentMap;
     }
 
-    public void clear(){
-        positiveComments.clear();
-        negativeComments.clear();
-        fearComments.clear();
-        surprisedComments.clear();
-        angerComments.clear();
-        sadnessComments.clear();
-        neutralComments.clear();
-        happyComments.clear();
-        disgustComments.clear();
-    }
+//    public void clear(){
+//        positiveComments.clear();
+//        negativeComments.clear();
+//        fearComments.clear();
+//        surprisedComments.clear();
+//        angerComments.clear();
+//        sadnessComments.clear();
+//        neutralComments.clear();
+//        happyComments.clear();
+//        disgustComments.clear();
+//    }
 }
