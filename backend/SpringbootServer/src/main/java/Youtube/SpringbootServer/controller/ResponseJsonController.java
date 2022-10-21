@@ -45,16 +45,16 @@ public class ResponseJsonController {
         KeywordDTO keyword = KeywordResponse.getBody();
         keywordDTO.setB5(keyword.getB5());
         keywordDTO.setComments(keyword.getComments());
-        log.info("대표 키워드 1 = {}", keyword.getB5()[0]);
-        log.info("대표 키워드 2 = {}", keyword.getB5()[1]);
-        log.info("대표 키워드 3 = {}", keyword.getB5()[2]);
-        log.info("대표 키워드 4 = {}", keyword.getB5()[3]);
-        log.info("대표 키워드 5 = {}", keyword.getB5()[4]);
-        log.info("키워드 1 대표 댓글 = {}", keyword.getComments()[0][0]);
-        log.info("키워드 2 대표 댓글 = {}", keyword.getComments()[1][0]);
-        log.info("키워드 3 대표 댓글 = {}", keyword.getComments()[2][0]);
-        log.info("키워드 4 대표 댓글 = {}", keyword.getComments()[3][0]);
-        log.info("키워드 5 대표 댓글 = {}", keyword.getComments()[4][0]);
+//        log.info("대표 키워드 1 = {}", keyword.getB5()[0]);
+//        log.info("대표 키워드 2 = {}", keyword.getB5()[1]);
+//        log.info("대표 키워드 3 = {}", keyword.getB5()[2]);
+//        log.info("대표 키워드 4 = {}", keyword.getB5()[3]);
+//        log.info("대표 키워드 5 = {}", keyword.getB5()[4]);
+//        log.info("키워드 1 대표 댓글 = {}", keyword.getComments()[0][0]);
+//        log.info("키워드 2 대표 댓글 = {}", keyword.getComments()[1][0]);
+//        log.info("키워드 3 대표 댓글 = {}", keyword.getComments()[2][0]);
+//        log.info("키워드 4 대표 댓글 = {}", keyword.getComments()[3][0]);
+//        log.info("키워드 5 대표 댓글 = {}", keyword.getComments()[4][0]);
 
 
         return keyword;
@@ -70,8 +70,8 @@ public class ResponseJsonController {
         CommentDTO[] comments = response.getBody();
 
         HashMap<String, List> commentMap = commentService.classifyComment(comments);
-        HashMap<String, Double> positiveNegativePercentMap = commentService.positiveNegativePercent();
-        HashMap<String, Double> sentimentPercentMap = commentService.sentimentPercent();
+        HashMap<String, Double> positiveNegativePercentMap = commentService.positiveNegativePercent(commentMap);
+        HashMap<String, Double> sentimentPercentMap = commentService.sentimentPercent(commentMap);
 
         percentDTO.SetPercentDTO(positiveNegativePercentMap.get("refined_positivePercent"),positiveNegativePercentMap.get("refined_negativePercent"),
                 sentimentPercentMap.get("refined_happyPercent"),sentimentPercentMap.get("refined_surprisedPercent"),sentimentPercentMap.get("refined_angerPercent"),
